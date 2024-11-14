@@ -6,15 +6,26 @@
     <link rel="stylesheet" href="css/style.css">
     <script src="script.js"></script>
     <style>
-      /* Container with 2 cm left margin */
-      .container {
+      /* Justify text to the left */
+      body, h1, h2, h3, p, ul, li, div {
+        text-align: left;
         margin-left: 2cm;
       }
 
-      /* Standard bullet styling */
+      /* Style list items with a pointer (bullet) */
       ul {
-        list-style-type: disc;
-        padding-left: 20px;
+        list-style-type: disc; /* Standard bullet style */
+        padding-left: 20px; /* Indent to keep bullets visible */
+      }
+
+      /* Optional: Customize bullet icon */
+      /* ul {
+        list-style-image: url('path-to-custom-icon.png');
+      } */
+
+      /* Optional: Control the width of paragraphs for readability */
+      p {
+        max-width: 600px;
       }
     </style>
   </head>
