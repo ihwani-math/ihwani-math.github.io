@@ -6,14 +6,33 @@
     <link rel="stylesheet" href="css/style.css">
     <script src="script.js"></script>
     <style>
-      /* Justify text to the left */
-      body, h1, h2, h3, p, ul, li, div {
-        text-align: left;
+      /* Center the main content with a max-width */
+      body {
+            display: flex;
+            justify-content: center;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5; /* Light background to make content stand out */
       }
-      /* Optional: control the width of paragraphs for readability */
-      p {
-        max-width: 600px;
+
+      .container {
+           max-width: 800px; /* Control the width of the main content */
+           width: 100%;
+           padding: 20px;
+           background-color: white;
+           box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+           margin-top: 20px;
       }
+
+       h1, h2, h3, p, ul, li {
+       text-align: left;
+       line-height: 1.6; /* Better readability */
+       }
+
+       img {
+            display: block;
+            margin: 0 auto; /* Center images */
+       }
     </style>
   </head>
   <body>
