@@ -1,0 +1,90 @@
+body {
+    background: #ccc;
+    max-width: 600px;
+    margin: auto;
+}
+
+h1 {
+    text-align: center; 
+    font-family: "helvetica", sans-serif;
+}
+
+#main {
+    margin: 10px auto;
+}
+
+#main td {
+    border: none;
+}
+
+#timer {
+    width: 150px;
+    font-size: 32pt;
+    font-family: "courier", monospace;
+}
+
+#timer.small, #instr {
+    font-size: 12pt;
+    font-family: "courier", monospace;
+}
+
+#instr {
+    text-align: center;
+    margin-top: 40px;
+}
+
+#cube {
+    width: 300px;
+}
+
+#times, td {
+    width: 150px;
+    font-family: "courier", monospace;
+}
+
+td h4 {
+    text-decoration: underline;
+    font-weight: normal;
+    padding-left: 30px;
+}
+
+#avg {
+    padding-left: 30px;
+    font-size: 14pt;
+}    
+
+#times li {
+    list-style-type: none;
+}
+
+img {
+    /* visibility: hidden; 
+    position: fixed; */
+    display: none;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+button {
+    border: none;
+    font-family: "courier", monospace;
+    font-size: 12pt;
+    text-decoration: underline;
+    text-decoration: underline;
+    background-color: #ccc;
+}
+
+
+#help {
+    visibility: hidden; 
+    /* position: fixed; */
+    border: 1px solid black;
+    border-collapse: collapse;
+    margin-top: 10px;
+    margin-left: 20px;
+}
+
+#help th, td {
+    border: 1px solid black;
+    padding: 5px;
+}
