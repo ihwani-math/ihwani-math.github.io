@@ -1,0 +1,266 @@
+\documentclass{article}
+\usepackage{amssymb, amsmath, amsfonts, amsthm, graphics, enumerate, mathrsfs, mathtools, tikz-cd}
+\usepackage{geometry, soul, hyperref}
+\usetikzlibrary{positioning,arrows,scopes}
+
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+% \setlength{\headheight}{26pt}
+% \setlength{\oddsidemargin}{-0.2in}    
+% \setlength{\evensidemargin}{-0.2in}
+% \setlength{\topmargin}{0in}
+% \setlength{\textwidth}{6.5in}
+ %\setlength{\headwidth}{6.5in} 
+ \setlength{\textheight}{8.5in}
+ 
+\theoremstyle{definition}
+\newtheorem*{thm}{Theorem}
+\newtheorem*{pthm}{Pre-Theorem}
+\newtheorem{prob}{Problem}
+\newtheorem{ex}{Exercise}
+\newtheorem*{dfn}{Definition}
+\newtheorem{eg}{Example}
+\newtheorem*{prop}{Proposition}
+\newtheorem*{rmk}{Remark}
+\newtheorem*{conj}{Conjecture}
+
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\FF}{\mathbb{F}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\PP}{\mathbb{P}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\cM}{\mathcal{M}}
+
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\Div}{Div}
+\DeclareMathOperator{\Supp}{Supp}
+\DeclareMathOperator{\indeg}{indeg}
+\DeclareMathOperator{\Pic}{Pic}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\im}{im}
+
+\newcommand{\dsp}{\displaystyle}
+\newcommand{\floor}[1]{\lfloor{{#1}}\rfloor}
+\newcommand{\ceil}[1]{\lceil{{#1}}\rceil}
+
+\title{log(m) meeting 6}
+%\date{\today}
+\lhead{ Log(M): Origami on lattices \\}
+\rhead{ Meeting 6 \\ 22 February 2019}
+\begin{document}
+%\maketitle 
+%\begin{center}
+%Notes, Fall 2017, assorted
+%\end{center}
+
+\section{Logistics}
+
+\ul{Next meetings}:  Wednesday February 27, 9-9:45am and Friday March 1, 12:15 - 1pm
+\medskip
+
+\noindent \ul{Midterm presentations}: Tuesday February 26, 5 - 6:30pm
+
+\bigskip
+{Expectations} for next meetings: 
+\begin{itemize}
+        \item Problem 7: If I am given a hexagon configuration in terms of the $6$ crease vectors, what are the $6$ dihedral angles in this configuration?
+    
+    \item Problem 8: mountain / valley labellings
+    %Once we understand the neighborhood of each flat configuration, we can ask:
+    % How do these neighborhoods fit together?
+    % One approach: divide configuration space into regions labelled by whether each crease is a ``mountain'' or ``valley'' fold (or neither)
+    
+    \item \textbf{[Writing]} 
+    Continue writing up relevant discussion from this week in draft of final report 
+    
+    \item \textbf{[Visualization]} 
+    Share code for updated visualization program
+
+\end{itemize}
+
+\section{Hexagon configuration space}
+\subsection{Changing coordinates}
+\setcounter{prob}{6}
+In the hexagon configuration space, we discussed two choices for how to put ``coordinates'' on this space: 
+crease vectors and dihedral fold angles.
+How do we change coordinates between these, from crease vectors to dihedral angles?
+
+For example, if we have consecutive crease vectors 
+\[ v_1 = (1,0,0),\, v_2 = (0,1,0),\, v_3 = (-1,0,0)\]
+then the corresponding dihedral angle is $\theta_2 = 0$.
+If we have consective crease vectors
+\[  v_2 = (0,1,0),\, v_3 = (-1,0,0),\, v_4 = (0,0,1)\]
+then the corresponding dihedral angle is $\theta_3 = \frac{\pi}{2}$.
+\begin{prob}
+Given three nonzero vectors $v_0,\,v_1,\,v_2 \in \RR^3$, 
+what is a formula to express the dihedral angle between 
+the planes $p_{01} = \RR v_0+\RR v_1$ and $p_{12} = \RR v_1 + \RR v_2$?
+
+\noindent (Possible hint: \url{https://en.wikipedia.org/wiki/Dihedral_angle#Mathematical_background})
+\end{prob}
+Our goal will be to use this expression for the angles to express the {\em energy} 
+\[ E(\Phi) = \left( \sum_i |\theta_i - \pi|^2 \right)^{1/2}\]
+of a given fold configuration in terms of the crease vectors,
+and to study configurations of constant energy.
+
+\subsection{Montain / valley diagrams}
+To understand a topological space it often helps to cut it up into smaller, more manageable pieces.
+
+For a fold configuration which is ``near flat,'' 
+we say a crease is a {\em mountain fold} if it is higher than a secant line between its two adjacent flat regions, and a {\em valley fold} if it is lower.
+(We take the nearby flat configuration as reference for what ``higher''
+and ``lower'' mean.)
+
+Suppose we label each crease in a configuration with ``mountain'' or ``valley'' or neither.
+Visually we can indicate these respectively by a solid line, a dotted line, or no line.
+\begin{eg}
+For two perpendicular creases (so there are $4$ total crease vectors),
+the following shows possible mountain/valley labellings:
+\begin{center}
+    \includegraphics[scale=0.3]{mv_diagram_small}
+\end{center}
+The following mountain/valley labelling is not possible:
+%\begin{center}
+\qquad    \includegraphics[scale=0.1]{mv_impossible}
+%\end{center}
+\end{eg}
+
+\begin{prob}
+In the following diagrams with $5$ creases coming from a central vertex,
+which mountain/valley labellings are possible? How do these fit together in configuration space near the unfolded state?
+\begin{enumerate}
+    \item creases with equal spacings
+    \begin{center}
+        \includegraphics[scale=0.2]{5fold_equal}
+    \end{center}
+
+    \item creases perpendicular plus one at $45^\circ$ angle
+    \begin{center}
+        \includegraphics[scale=0.2]{5fold_square}
+    \end{center}
+\end{enumerate}
+\end{prob}
+
+
+\subsection{Neighborhoods of flat configurations}
+The paper "Hodge Theory and the Art of Paper Folding" claims that
+for every point in the configuration space that does not lie completely in a plane (i.e. corresponds to a non-degenerate linkage),
+a small neighborhood around this point looks like an open ball in $\RR^3$.
+
+The $11$ flat configurations of a folded hexagon are discussed in the ``Discrete Folding'' paper,
+and shown in Figure 9:
+\begin{center}
+    \includegraphics[scale=0.7]{flat_hexagon_configs}
+\end{center}
+
+\setcounter{prob}{4}
+\begin{prob} \,[see ``Hodge Theory'' paper]
+For each  of the $11$ flat configurations of the hexagon,
+\begin{enumerate}[(a)]
+\item What are the parameters $f$, $b$, and $w$ as used in Theorem 1.1?
+
+\item What is the signature of the null cone describing this neighborhood of configuration space?
+\end{enumerate}
+\end{prob}
+\ul{Discussion}:
+For the unfolded configuration, we have $f=6$, $b=0$, and $w=1$ (OR $f=0$, $b=6$, $w=-1$.) 
+The corresponding null cone has signature $(3,1)$.
+A small neighborhood in configuration space
+is a cone over two disjoint $2$-spheres $S^2 \times S^0$.
+
+For the other $10$ configurations, $f=3$, $b=3$ and $w=0$.
+The corresponding null cone has signature $(2,2)$.
+A small neighborhood in configuration space 
+is a cone over the $2$-torus $S^1 \times S^1$.
+
+\section{Quadratic forms}
+Given an $n\times n$ (real) symmetric matrix $Q$ we can define a {\em quadratic form}
+on $\RR^n$ by
+\begin{align*}
+%    \RR^n \times \RR^n &\to \RR \\
+    (u, v)\quad &\mapsto u^T Q v .
+\end{align*}
+We denote this map $f_Q: \RR^n \times \RR^n \to \RR$.
+The {\em null cone} of a quadratic form is the set 
+\[ Z(Q) = \{x \in \RR^n \text{ such that }f_Q(x,x) = x^TQx = 0 \}. \]
+% If $x$ is in the null cone, then for any $\lambda \in \RR$
+% \[ (\lambda x)^T Q (\lambda x) = \lambda^2 (x^T Q x) = 0\]
+% so $\{ \lambda x : \lambda \in \RR\}$ is contained in the null cone.
+% Why is this called a ``cone''? See
+% \url{https://en.wikipedia.org/wiki/Cone_(topology)};
+% this makes $Z(Q)$ (essentially) the cone over the ``unit distance'' null vectors 
+The {\em unit null cone} (nonstandard terminology) is the set
+$$\hat{Z}(Q) = \{ x \in\RR^n : x^TQx = 0 \text{ and } |x|^2=1\}.$$
+
+% A quadratic form $f_Q$ is {\em nondegenerate} if the matrix $Q$ is invertible (i.e. all eigenvalues are nonzero).
+% The {\em nullity} of $f_Q$ is the dimension of the $0$-eigenspace of $Q$.
+% The {\em spectral theorem} says that up to a change of coordinates, 
+% a nondegenerate quadratic form $f_Q$ is equivalent to 
+% a form associated to a matrix
+% \[ Q = \begin{pmatrix}
+% 1 & 0 & \cdots & 0 & 0 & 0 \\
+% 0 & \ddots & 0 & 0 & 0 & 0\\
+% \vdots & 0 &  1 & 0 & 0 & 0\\
+% 0 & 0 & 0 &  -1 & 0 & \vdots \\
+% 0 & 0 & 0 & 0 & \ddots & 0 \\
+% 0 & 0 & 0 & \cdots & 0 & -1
+% \end{pmatrix}.\]
+% The quadratic form has
+% {\em signature}  $(p, q)$ 
+% if there are $p$-many $+1$'s and $q$-many $-1$'s in this diagonal form.
+% We described the null cone of a quadratic form of signature $(1,1)$, $(2,1)$, and $(3,1)$.
+\begin{prob}
+For each case below, the null cone $Z(Q)$ is the cone over
+the ``unit null cone'' $\hat{Z}(Q)$; 
+we want a nice geometric description of $\hat{Z}(Q)$.
+
+% (Hint: in the general case your answer should involve $n$-spheres;
+% see \url{https://en.wikipedia.org/wiki/N-sphere})
+\begin{enumerate}[(a)]
+    \item Describe the null cone of a quadratic form with signature $(1,3)$.
+    
+    \item Describe the null cone of a quadratic form with signature $(2,2)$.
+    
+    \item \,[Challenge(?)] Describe the null cone of a general quadratic form with signature $(p,q)$.
+\end{enumerate}
+\end{prob}
+\ul{Discussion}
+(b) When the signature is $(2,2)$, the unit null cone is described by
+\[ \hat{Z}(Q) = \{ (a,b,c,d) : a^2 + b^2 - c^2 - d^2 = 0,\, a^2 + b^2 + c^2 + d^2 = 1\} .\]
+By adding and subtracting the two constraints, this is equivalent to
+\[ \hat{Z}(Q) = \{ (a,b,c,d) : a^2 + b^2 = \frac12,\, c^2 + d^2 = \frac12\} .\]
+This shows that $\hat{Z}(Q)$ is a {\em product} of the spaces
+\[ \{ (a,b) : a^2 + b^2 = \frac12\} \times \{ (c,d) : c^2 + d^2 = \frac12\}.\]
+Each of these factors is a circle of radius $\sqrt{1/2}$, so topologically
+$\hat{Z}(Q) \cong S^1 \times S^1$.
+
+(c) In general, when the signature is $(p,q)$ the null cone
+\[ \hat{Z}(Q) = \{a_1^2 + \cdots + a_p^2 - b_1^2 - \cdots - b_q^2 = 0,\,
+a_1^2 + \cdots + b_q^2 = 1\}\]
+can be expressed equivalently as
+\[ \{a_1^2 + \cdots + a_p^2 = \frac12,\,  b_1^2 + \cdots + b_q^2 = \frac12 \} \]
+so $\hat{Z}(Q) \cong S^p \times S^q$ is topologically a product of two spheres.
+
+\begin{eg}
+The null cone of of a quadratic form of signature $(1,1)$ is two lines passing through the origin.
+The unit null cone $\hat{Z}(Q)$ is a set of $4$ discrete points,
+which is equal to the product of spheres $S^0 \times S^0$.
+\end{eg}
+\begin{eg}
+The null cone of a quadratic form of signature $(2,1)$ is a ``doubled cone''.
+% \begin{center}
+%     \includegraphics[scale=0.5]{double_cone}
+%
+%     \tiny{Source: cliffnotes.com}
+% \end{center}
+The unit null cone $\hat{Z}(Q)$ is two disjoint circles, which is 
+$S^1\times S^0$.
+\end{eg}
+
+
+\end{document}

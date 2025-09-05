@@ -1,0 +1,193 @@
+\documentclass{article}
+\usepackage{amssymb, amsmath, amsfonts, amsthm, graphics, enumerate, mathrsfs, mathtools, tikz-cd}
+\usepackage{geometry, soul, hyperref}
+\usetikzlibrary{positioning,arrows,scopes}
+
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+% \setlength{\headheight}{26pt}
+% \setlength{\oddsidemargin}{-0.2in}    
+% \setlength{\evensidemargin}{-0.2in}
+% \setlength{\topmargin}{0in}
+% \setlength{\textwidth}{6.5in}
+ %\setlength{\headwidth}{6.5in} 
+ \setlength{\textheight}{8.5in}
+ 
+\theoremstyle{definition}
+\newtheorem*{thm}{Theorem}
+\newtheorem*{pthm}{Pre-Theorem}
+\newtheorem{prob}{Problem}
+\newtheorem{ex}{Exercise}
+\newtheorem*{dfn}{Definition}
+\newtheorem{eg}{Example}
+\newtheorem*{prop}{Proposition}
+\newtheorem*{rmk}{Remark}
+\newtheorem*{conj}{Conjecture}
+
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\FF}{\mathbb{F}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\PP}{\mathbb{P}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\cM}{\mathcal{M}}
+
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\Div}{Div}
+\DeclareMathOperator{\Supp}{Supp}
+\DeclareMathOperator{\indeg}{indeg}
+\DeclareMathOperator{\Pic}{Pic}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\im}{im}
+
+\newcommand{\dsp}{\displaystyle}
+\newcommand{\floor}[1]{\lfloor{{#1}}\rfloor}
+\newcommand{\ceil}[1]{\lceil{{#1}}\rceil}
+
+\title{log(m) meeting 1}
+%\date{\today}
+\lhead{ Log(M): Origami on lattices \\}
+\rhead{ Meeting 1 \\ 22 January 2019}
+\begin{document}
+%\maketitle 
+%\begin{center}
+%Notes, Fall 2017, assorted
+%\end{center}
+
+\section{Logistics}
+Make sure to send your Log(M) expectations form to Harry Bray!
+
+I forgot to mention today: in addition to the midsemester presentation and final poster, 
+you will be required to write up a report of your research in article format.
+We can discuss details at our next meeting.
+
+\ul{Next meeting}: Friday January 25, 10 - 11am.
+
+\section{Moduli spaces}
+
+A {\em moduli space} or {\em parameter space} is a (topological / geometric) space which parametrizes some family of objects.
+As sets, we at least want a bijection
+\[ \{\text{points in moduli space}\} \cong \{ \text{objects in family} \}.\]
+Often this ``family of objects'' means the possible configurations of a single underlying object which has some amount of flexibility.
+For this project we are interested in the possible configurations of a folded, rigid sheet, 
+assuming that the folds must lie along a fixed set of creases.
+
+%We discussed some examples.
+
+\begin{eg}
+Consider a rigid sheet with a single crease (extending completely across the sheet).
+A folding configuration of this object is specified by a single angle 
+$\theta$.
+The moduli space of  folding configurations is 
+the set of allowed fold angles.
+
+What counts as ``allowed,'' and the resulting topology, depends on our interpretation:
+\begin{enumerate}[(a)]
+    \item If we assume the sheet cannot pass through itself and cannot fold completely flat (but arbitrarily close to flat), 
+    then the possible fold angles are $\{ \theta : 0 < \theta < 2\pi\}$.
+    Geometrically, this is an {\em open segment}.
+    
+    If the sheet cannot pass through itself but can fold completely flat,
+    then the allowed angles are $\{\theta : 0\leq \theta \leq 2\pi\}$.
+    Geometrically, this is a {\em closed segment}.
+    
+    
+    \item If the sheet is allowed to pass through itself, 
+    we can have any angle including $\theta = 0$ and $\theta = 2\pi$
+    but these two angles describe the {\em same configuration}. (Why?)
+    Thus the moduli space is the space $\{ \theta : 0 \leq \theta \leq 2\pi \} / (0 \sim 2\pi)$ where we ``glue together'' angles $0$ and $2\pi$.
+    Geometrically, this is a {\em circle}.
+\end{enumerate}
+\end{eg}
+To have some consistent terminology,
+we can refer to folding models which are allowed to pass through themselves as ``massless'' and folding models which cannot pass through themselves as
+``massive''. 
+(Do you have other / better suggestions for what to call these?)
+
+\begin{eg}
+Consider a rigid sheet with two parallel creases, which are far apart.
+\begin{center}
+    \includegraphics[scale=0.5]{parallel_far_inv}
+\end{center}
+In this case the fold configuration is described by an ordered pair of angles $(\theta_1,\theta_2)$.
+\begin{enumerate}[(a)]
+    \item \,[``massive'' case] If the sheet cannot pass through itself,
+    the possible angles are 
+    $$\{ \theta_1, \theta_2 : 0 \leq \theta_1\leq 2\pi,\, 0 \leq \theta_2 \leq 2\pi\}.$$
+    The space of fold configurations is a {\em square}.
+    
+    \item \,[``massless'' case] 
+    If the sheet can pass through itself, the possible angles are
+    $$\{ \theta_1, \theta_2 : 0 \leq \theta_1\leq 2\pi,\, 0 \leq \theta_2 \leq 2\pi\} / ( \,(0, \theta_2) \sim (2\pi, \theta_2),\, (\theta_1,0) \sim (\theta_1, 2\pi)\,),$$
+    i.e. setting $\theta_1 = 0$ is the same as $\theta_1 = 2\pi$, regardless of $\theta_2$, and vice versa.
+    The space of fold configurations is a {\em $2$-dimensional torus},
+    which we can construct by gluing together opposing edges of a square (without ``twisting'').
+    \begin{center}
+        \includegraphics[scale=0.3]{torus_quotient}
+    \end{center}
+    (Image from \small{\url{http://mathonline.wikidot.com/identifying-polygons-and-their-quotient-spaces}}.)
+\end{enumerate}
+\end{eg}
+
+For the following problems, consider both the ``massive'' case and the ``massless'' case.
+
+\begin{prob}
+(a) What is the moduli space of folding configurations for 
+two parallel creases, parallel to opposite sides, 
+which split the sheet into $3$ regions of equal area?
+\begin{center}
+    \includegraphics[scale=0.5]{parallel_equal_inv}
+\end{center}
+%\end{prob}
+%\begin{prob}
+
+(b) What is the moduli space of folding configurations for two parallel creases, parallel to opposite sides, which are spaced arbitrarily?
+
+(c) What  distance is needed between the creases for this moduli space to look like Example 2 (the ``far away'' case)? 
+What happens as the distance separating the two creases approaches $0$?
+\end{prob}
+
+\begin{prob}
+(a) What is the moduli space of folding configurations for two perpendicular creases?
+\begin{center}
+    \includegraphics[scale=0.5]{perpendicular_inv}
+\end{center}
+%\end{prob}
+%\begin{prob}
+
+(b) What is the moduli space of folding configurations for two creases which cross in the center at an arbitrary angle? 
+(Assume the creases intersect in the interior of the sheet)?
+
+(c) 
+Does your answer to (a) change if the creases are not aligned with the sides of the sheet?
+Does your answer to (a) or (b) change if the creases don't intersect at the center?
+
+\end{prob}
+
+\begin{prob} \,[non-folding example of a moduli space]
+What is the moduli space of ``space quadrilaterals'' with fixed side lengths?
+E.g. if I cut four lengths of straw (with four different colors) and connect them in a loop with string, what are all possible configurations of this object 
+(up to rotations and translations in $3$-space)?
+
+(Thanks to Alex Wright for the straw polygons!)
+\end{prob}
+
+\ul{Expectations} for next meeting: 
+\begin{itemize}
+    \item I think it should be possible to give a complete answer to Problems 1(a) and 2(a) (remember to include BOTH ``massive'' and ``massless'' cases), 
+    and Problem~3. Once you finish these, see if you can answer parts 1(b-c) and 2(b-c) as well.
+    
+    \item In the ``Discrete folding'' paper, try to understand Figure 9 on p. 10.
+    How are the diagrams in the top row special?
+    Where do the numbers next to each diagram come from?
+    Is the model considered here ``massless'' or ``massive''?
+    
+\end{itemize}
+(Let me know if these expectations are not aligning with the hours of work
+we agreed to!)
+
+\end{document}

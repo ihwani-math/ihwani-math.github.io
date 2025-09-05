@@ -1,0 +1,149 @@
+\documentclass{article}
+\usepackage{amssymb, amsmath, amsfonts, amsthm, graphics, enumerate, mathrsfs, mathtools, tikz-cd}
+\usepackage{geometry, soul, hyperref}
+\usetikzlibrary{positioning,arrows,scopes}
+
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+% \setlength{\headheight}{26pt}
+% \setlength{\oddsidemargin}{-0.2in}    
+% \setlength{\evensidemargin}{-0.2in}
+% \setlength{\topmargin}{0in}
+% \setlength{\textwidth}{6.5in}
+ %\setlength{\headwidth}{6.5in} 
+ \setlength{\textheight}{8.5in}
+ 
+\theoremstyle{definition}
+\newtheorem*{thm}{Theorem}
+\newtheorem*{pthm}{Pre-Theorem}
+\newtheorem{prob}{Problem}
+\newtheorem{ex}{Exercise}
+\newtheorem*{dfn}{Definition}
+\newtheorem{eg}{Example}
+\newtheorem*{prop}{Proposition}
+\newtheorem*{rmk}{Remark}
+\newtheorem*{conj}{Conjecture}
+
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\FF}{\mathbb{F}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\PP}{\mathbb{P}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\cM}{\mathcal{M}}
+
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\Div}{Div}
+\DeclareMathOperator{\Supp}{Supp}
+\DeclareMathOperator{\indeg}{indeg}
+\DeclareMathOperator{\Pic}{Pic}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\im}{im}
+
+\newcommand{\dsp}{\displaystyle}
+\newcommand{\floor}[1]{\lfloor{{#1}}\rfloor}
+\newcommand{\ceil}[1]{\lceil{{#1}}\rceil}
+
+\title{log(m) meeting 10}
+%\date{\today}
+\lhead{ Log(M): Origami on lattices \\}
+\rhead{ Meeting 10 \\ 29 March 2019}
+\begin{document}
+
+
+\section{Logistics}
+
+\ul{Next meeting}:  Tuesday April 2, 11:30 - 1pm
+\medskip
+
+    
+\bigskip
+{Expectations} for next meeting: 
+\begin{itemize}
+
+    
+    
+    \item mountain / valley labellings
+    for hexagon crease pattern
+    
+    \textbf{Problem 9}: 
+    In a diagram with $6$ creases coming together at a vertex at equal angles,
+the unit null cone near the flat space is two disjoint spheres.
+We consider cutting up  these spheres into regions according to mountain/valley labellings.
+\begin{enumerate}[(a)]
+    % \item How many zero-dimensional, one-dimensional, and two-dimensional regions are there on each sphere?
+    % (Answer: $9$, $24$, and $17$)
+    
+    \item[(b)] What shapes are the two-dimensional regions? 
+    How do they fit together? 
+    
+    ($\rightarrow$ draw the diagrams we made in this meeting)
+\end{enumerate}
+    
+   
+    \item angle constraints on hexagon crease pattern
+    
+    \textbf{Problem 11}:
+    Suppose we want to fix three consecutive creases on a hexagon at fold angles
+    $\theta_1$, $\theta_2$, and $\theta_3$. 
+    (By ``fold angle'' we mean flat $\Leftrightarrow \, \theta_i=0$.)
+    \begin{enumerate}[(a)]
+    \item What combinations of $\theta_1,\theta_2,\theta_3$
+    are possible for a hexagon?
+    Find exact equations to characterize this. 
+        (Hint: it may help to use \url{https://en.wikipedia.org/wiki/Rodrigues\%27_rotation_formula})
+    
+    For example, if $\theta_2 = 0$ and $\theta_1, \theta_3 > 0$ then this is possible (and we can compute $\theta_4,\theta_5,\theta_6)$,
+    but if $\theta_2=0$, $\theta_1 >0$, $\theta_3<0$ 
+    then this is not possible for the hexagon.
+    
+    % \item When this is possible, what are the values of angles $\theta_4,\, \theta_5,\, \theta_6$?
+    % Note: there may be more than one answer. How many answers are possible?
+    \end{enumerate}
+    Particular sub-problem:  
+    
+    \textbf{Problem 11 (c)}
+     Suppose $\theta_1 = \theta_3 = 0$ and $\theta_2$ is arbitrary.
+    Then one possibility is that $\theta_4 = \theta_6 = 0$
+    and $\theta_5 = \theta_2$.
+    A second possibility is that crease number $5$ is ``flipped inward'',
+    so that $\theta_5 = -\theta_2$, and $\theta_4$ and $\theta_6$
+    are at some positive angle. 
+    What is the angle of $\theta_4= \theta_6$ as a function of $\theta_2$, in this case?
+    
+    Sub-sub-problem: 
+    
+    \textbf{Problem 11 (d)}
+    Consider a spherical rhombus, 
+    i.e. a quadrilateral on a unit sphere with all four side lengths $L$.
+    Show that opposite pairs of angles are equal, say $\alpha$ and $\beta$.
+    \begin{center}
+        \includegraphics[scale=0.25]{rhombus}
+    \end{center}
+    Show that $\alpha$ and $\beta$ satisfy the relation
+    \[ \tan \frac\alpha{2} \tan \frac\beta{2} = \frac1{\cos L} .\]
+    Graph this relation on $\alpha$, $\beta$ for $L = \displaystyle\frac\pi{3}$
+    (i.e. the spherical length of a hexagon edge).
+    
+    (Check: As $L \to 0$, why does this agree with the relation 
+    $\alpha + \beta = \pi$
+    for flat geometry?)
+    
+    \item \textbf{[Writing]} 
+    Write up notes for this meeting, and
+    continue writing up relevant discussion from this week in draft of final report 
+    \item \textbf{[Final project]}
+    Think about whether you would rather create a final report in article form,
+    or a hexagon visualization program as a final project, or both 
+    (in addition to the poster)
+
+\end{itemize}
+
+
+
+
+\end{document}

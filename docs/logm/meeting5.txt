@@ -1,0 +1,201 @@
+\documentclass{article}
+\usepackage{amssymb, amsmath, amsfonts, amsthm, graphics, enumerate, mathrsfs, mathtools, tikz-cd}
+\usepackage{geometry, soul, hyperref}
+\usetikzlibrary{positioning,arrows,scopes}
+
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+% \setlength{\headheight}{26pt}
+% \setlength{\oddsidemargin}{-0.2in}    
+% \setlength{\evensidemargin}{-0.2in}
+% \setlength{\topmargin}{0in}
+% \setlength{\textwidth}{6.5in}
+ %\setlength{\headwidth}{6.5in} 
+ \setlength{\textheight}{8.5in}
+ 
+\theoremstyle{definition}
+\newtheorem*{thm}{Theorem}
+\newtheorem*{pthm}{Pre-Theorem}
+\newtheorem{prob}{Problem}
+\newtheorem{ex}{Exercise}
+\newtheorem*{dfn}{Definition}
+\newtheorem{eg}{Example}
+\newtheorem*{prop}{Proposition}
+\newtheorem*{rmk}{Remark}
+\newtheorem*{conj}{Conjecture}
+
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\FF}{\mathbb{F}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\PP}{\mathbb{P}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\cM}{\mathcal{M}}
+
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\Div}{Div}
+\DeclareMathOperator{\Supp}{Supp}
+\DeclareMathOperator{\indeg}{indeg}
+\DeclareMathOperator{\Pic}{Pic}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\im}{im}
+
+\newcommand{\dsp}{\displaystyle}
+\newcommand{\floor}[1]{\lfloor{{#1}}\rfloor}
+\newcommand{\ceil}[1]{\lceil{{#1}}\rceil}
+
+\title{log(m) meeting 5}
+%\date{\today}
+\lhead{ Log(M): Origami on lattices \\}
+\rhead{ Meeting 5 \\ 15 February 2019}
+\begin{document}
+%\maketitle 
+%\begin{center}
+%Notes, Fall 2017, assorted
+%\end{center}
+
+\section{Logistics}
+
+\ul{Next meeting}:  Friday February 22, 9:30 - 11am.
+\medskip
+
+\noindent \ul{Midterm presentations}: Tuesday February 26, 5 - 6:30pm
+
+\bigskip
+{Expectations} for next meeting: 
+\begin{itemize}
+    \item  Problem 5: We discussed why the hexagon crease pattern has a total of $11$ flat configurations.
+    What do neighborhoods of other flat configurations look like?  
+    % An answer for the local neighborhoods is given in the paper ``Hodge Theory and the Art of Paper Folding''; read pages 3--4 and the first page or so of Section 3 (p. 9) and Section 4 (p. 12).
+    
+    \item Problem 6: To apply Theorem 1.1 of ``Hodge Theory and the Art of Paper Folding'' we should understand 
+    what the null cone of a general quadratic form looks like geometrically
+    
+    \item Problem 4: Once we understand the neighborhood of each flat configuration, we can ask:
+    How do these neighborhoods fit together?
+    One approach: divide configuration space into regions labelled by whether each crease is a ``mountain'' or ``valley'' fold (or neither)
+    
+    \item Problem 7: If I am given a hexagon configuration in terms of the $6$ crease vectors, what are the $6$ dihedral angles in this configuration?
+    (Possible hint: \url{https://en.wikipedia.org/wiki/Dihedral_angle#Mathematical_background})
+    
+    \item \textbf{[Writing]} 
+    Continue writing up relevant discussion from this week in draft of final report 
+    
+    \item \textbf{[Visualization]} In visualization of fold configuration,
+    fill in the sheet with shading / color;
+    when sheets intersect indicate that in visualization
+    % I.e. for Problem 1 or 2, display the moduli space on one side of the screen and as you move the cursor over this space, display the fold configuration on the other side of the screen.
+    
+\end{itemize}
+
+\section{Hexagon configuration space}
+
+
+\setcounter{prob}{3}
+\begin{prob}
+What is the space of folding configurations of a hexagon with creases along its three axes?
+% \begin{center}
+%     \includegraphics[scale=0.5]{hexagon_inv}
+% \end{center}
+\end{prob}
+\ul{Discussion}:
+(For now we consider just the massless case.)
+
+The paper ``Branches of Triangulated Origami" 
+proves that in a neighborhood of the unfolded configuration,
+the configuration space looks like the null cone
+of the quadratic form
+\[ \{(a,b,c,d) \in \RR^4 : a^2 + b^2 + c^2 - d^2 =0 \} .\]
+In particular, the unfolded state is the ``vertex'' $(0,0,0,0)$ of this cone.
+
+In the paper ``Hodge Theory and Paper Folding,'' Theorem 1.1 describes the neighborhood of each flat configuration of the hexagon.
+The neighborhood is described as the null cone of a quadratic form of a certain signature.
+\begin{prob} \,[see ``Hodge Theory'' paper]
+For each  of the $11$ flat configurations of the hexagon,
+\begin{enumerate}[(a)]
+\item What are the parameters $f$, $b$, and $w$ as used in Theorem 1.1?
+
+\item What is the signature of the null cone describing this neighborhood of configuration space?
+\end{enumerate}
+\end{prob}
+The $11$ flat configurations of a folded hexagon are discussed in the ``Discrete Folding'' paper,
+and shown in Figure 9:
+\begin{center}
+    \includegraphics[scale=0.7]{flat_hexagon_configs}
+\end{center}
+
+\section{Quadratic forms}
+Given an $n\times n$ (real) symmetric matrix $Q$ we can define a {\em quadratic form}
+on $\RR^n$ by
+\begin{align*}
+%    \RR^n \times \RR^n &\to \RR \\
+    (u, v)\quad &\mapsto u^T Q v .
+\end{align*}
+We denote this map $f_Q: \RR^n \times \RR^n \to \RR$.
+The {\em null cone} of a quadratic form is the set 
+\[ Z(Q) = \{x \in \RR^n \text{ such that }f_Q(x,x) = x^TQx = 0 \}. \]
+If $x$ is in the null cone, then for any $\lambda \in \RR$
+\[ (\lambda x)^T Q (\lambda x) = \lambda^2 (x^T Q x) = 0\]
+so $\{ \lambda x : \lambda \in \RR\}$ is contained in the null cone.
+Why is this called a ``cone''? See
+\url{https://en.wikipedia.org/wiki/Cone_(topology)};
+this makes $Z(Q)$ (essentially) the cone over the ``unit distance'' null vectors 
+$$\hat{Z}(Q) = \{ x \in\RR^n : x^TQx = 0 \text{ and } |x|^2=1\}.$$
+
+A quadratic form $f_Q$ is {\em nondegenerate} if the matrix $Q$ is invertible (i.e. all eigenvalues are nonzero).
+The {\em nullity} of $f_Q$ is the dimension of the $0$-eigenspace of $Q$.
+The {\em spectral theorem} says that up to a change of coordinates, 
+a nondegenerate quadratic form $f_Q$ is equivalent to 
+a form associated to a matrix
+\[ Q = \begin{pmatrix}
+1 & 0 & \cdots & 0 & 0 & 0 \\
+0 & \ddots & 0 & 0 & 0 & 0\\
+\vdots & 0 &  1 & 0 & 0 & 0\\
+0 & 0 & 0 &  -1 & 0 & \vdots \\
+0 & 0 & 0 & 0 & \ddots & 0 \\
+0 & 0 & 0 & \cdots & 0 & -1
+\end{pmatrix}.\]
+The quadratic form has
+{\em signature}  $(p, q)$ 
+if there are $p$-many $+1$'s and $q$-many $-1$'s in this diagonal form.
+We described the null cone of a quadratic form of signature $(1,1)$, $(2,1)$, and $(3,1)$.
+\begin{eg}
+The null cone of of a quadratic form of signature $(1,1)$ is two lines passing through the origin.
+This counts as having two branches at the origin because the equation $\{a^2 - b^2 = 0\}$
+defining the null cone factors into two linear terms
+$\{ a - b = 0 \} \cup \{ a + b = 0\}$.
+
+The unit null cone $\hat{Z}(Q)$ is a set of $4$ discrete points.
+\end{eg}
+\begin{eg}
+The null cone of a quadratic form of signature $(2,1)$ is a ``doubled cone'':
+\begin{center}
+    \includegraphics[scale=0.5]{double_cone}
+    
+    \tiny{Source: cliffnotes.com}
+\end{center}
+The unit null cone $\hat{Z}(Q)$ is two disjoint circles.
+\end{eg}
+
+\begin{prob}
+For each case below, the null cone $Z(Q)$ is the cone over
+the ``unit null cone'' $\hat{Z}(Q)$; 
+we want a nice geometric description of $\hat{Z}(Q)$.
+
+(Hint: in the general case your answer should involve $n$-spheres;
+see \url{https://en.wikipedia.org/wiki/N-sphere})
+\begin{enumerate}[(a)]
+    \item Describe the null cone of a quadratic form with signature $(1,3)$.
+    
+    \item Describe the null cone of a quadratic form with signature $(2,2)$.
+    
+    \item \,[Challenge(?)] Describe the null cone of a general quadratic form with signature $(p,q)$.
+\end{enumerate}
+\end{prob}
+
+
+\end{document}

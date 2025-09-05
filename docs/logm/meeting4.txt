@@ -1,0 +1,144 @@
+\documentclass{article}
+\usepackage{amssymb, amsmath, amsfonts, amsthm, graphics, enumerate, mathrsfs, mathtools, tikz-cd}
+\usepackage{geometry, soul, hyperref}
+\usetikzlibrary{positioning,arrows,scopes}
+
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+% \setlength{\headheight}{26pt}
+% \setlength{\oddsidemargin}{-0.2in}    
+% \setlength{\evensidemargin}{-0.2in}
+% \setlength{\topmargin}{0in}
+% \setlength{\textwidth}{6.5in}
+ %\setlength{\headwidth}{6.5in} 
+ \setlength{\textheight}{8.5in}
+ 
+\theoremstyle{definition}
+\newtheorem*{thm}{Theorem}
+\newtheorem*{pthm}{Pre-Theorem}
+\newtheorem{prob}{Problem}
+\newtheorem{ex}{Exercise}
+\newtheorem*{dfn}{Definition}
+\newtheorem{eg}{Example}
+\newtheorem*{prop}{Proposition}
+\newtheorem*{rmk}{Remark}
+\newtheorem*{conj}{Conjecture}
+
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\FF}{\mathbb{F}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\PP}{\mathbb{P}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\cM}{\mathcal{M}}
+
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\Div}{Div}
+\DeclareMathOperator{\Supp}{Supp}
+\DeclareMathOperator{\indeg}{indeg}
+\DeclareMathOperator{\Pic}{Pic}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\im}{im}
+
+\newcommand{\dsp}{\displaystyle}
+\newcommand{\floor}[1]{\lfloor{{#1}}\rfloor}
+\newcommand{\ceil}[1]{\lceil{{#1}}\rceil}
+
+\title{log(m) meeting 4}
+%\date{\today}
+\lhead{ Log(M): Origami on lattices \\}
+\rhead{ Meeting 4 \\ 9 February 2019}
+\begin{document}
+%\maketitle 
+%\begin{center}
+%Notes, Fall 2017, assorted
+%\end{center}
+
+\section{Logistics}
+
+\ul{Next meeting}:  Friday February 15, 9:30 - 11am.
+
+\bigskip
+{Expectations} for next meeting: 
+\begin{itemize}
+    \item  Problem 4: for the space of fold configurations for 3 creases (or 6 creases?) through a hexagon,
+    what does a small neighborhood of the unfolded hexagon look like?
+    Read ``Branches of Triangulated Origami'' paper (first 5 pages) to understand the answer given there.
+    
+    \item What do neighborhoods of other flat configurations look like? (How many flat configurations are there?) How do these neighborhoods fit together?
+    An answer for the local neighborhoods is given in the paper ``Hodge Theory and the Art of Paper Folding''; read pages 3--4 and the first page or so of Section 3 (p. 9) and Section 4 (p. 12).
+    
+    \item \textbf{[Writing]} 
+    Continue writing up relevant discussion from this week in draft of final report (e.g. What coordinates do we use for configuration space, fold angles vs. crease vectors?)
+    
+    \item \textbf{[Visualization]} Share code for visualizing space of fold configurations.
+    % I.e. for Problem 1 or 2, display the moduli space on one side of the screen and as you move the cursor over this space, display the fold configuration on the other side of the screen.
+    
+\end{itemize}
+
+\section{Moduli spaces}
+
+
+\setcounter{prob}{3}
+\begin{prob}
+What is the space of folding configurations of a hexagon with creases along its three axes?
+\begin{center}
+    \includegraphics[scale=0.5]{hexagon_inv}
+\end{center}
+\end{prob}
+\ul{Discussion}:
+(For now we consider just the massless case.)
+To describe a folding configuration we have different options for what ``coordinates'' to use:
+\begin{enumerate}[(1)]
+    \item Fold angles $\theta_1,\ldots,\theta_6$
+    $\in \RR / 2\pi \ZZ$
+    
+($\RR / 2\pi \ZZ=$ a circle made by gluing together endpoints of a segment of length $2\pi$)
+    
+    \item Crease vectors $u_1,\ldots, u_6$ $\in \RR^3$
+\end{enumerate}
+
+In case (1), 
+ our configuration space of all fold configurations is a subspace of $(\RR/2\pi\ZZ)^6= (\RR/2\pi\ZZ)\times \cdots \times (\RR/2\pi\ZZ)$.
+ For creases in a unit hexagon it is hard(?) to explicitly describe which fold angles are allowed.
+
+In case (2), 
+our configuration space is a subspace of $(\RR^3)^6$,
+modulo the action of rotations of $\RR^3$ acting on all six vectors simultaneously.
+For the six creases on a unit hexagon, vectors $u_1,\ldots,u_6$ define a valid fold configuration if and only if these constraints are satisfied:
+\begin{itemize}
+    \item $|u_i| = 1$ for $i = 1,\ldots, 6$
+    \item $|u_i - u_{i+1}|=1$ for $i = 1,\ldots, 6$ (where $u_7 := u_1$)
+\end{itemize}
+Once we observe this is a complete set of constraints, 
+we can estimate the degrees of freedom in our configuration space by the heuristic
+\[ (\text{degrees of freedom}) = (\text{total dimension}) - (\text{\# of constraints}).\]
+
+
+\section{Gaussian curvature}
+On a polyhedral surface we define the {\em Gaussian curvature} $\kappa$ at a point $x$ as 
+\[\kappa(x) = 2\pi - (\text{sum of angles around $x$}) .\]
+The curvature at a point can be positive or negative or zero.
+Folding does not change the curvature of a surface.
+
+The curvature is defined as a local property ($\kappa(x)$  depends only on an arbitrarily small neighborhood of $x$), but
+there is an amazing theorem which relates the local curvature to the global topology of the surface!
+\begin{thm}[Gauss--Bonnet]
+(a) Suppose $S$ is a polyhedral surface which is homeomorphic to a $2$-sphere.
+Then
+\[ \sum_{x\in S}\kappa(x) = 4\pi .\]
+
+\noindent (In particular, $\kappa(x)$ is nonzero only at finitely many points of $S$, i.e. only when $x$ is a vertex.)
+
+(b) Suppose $S$ is a closed polyhedral surface. Then 
+\[ \sum_{x\in S}\kappa(x) = 2\pi \chi(S)\]
+where $\chi$ is the {\em Euler characteristic}
+of the surface.
+A ``$g$-holed torus'' has $\chi(S) = 2-2g$.
+\end{thm}
+
+\end{document}

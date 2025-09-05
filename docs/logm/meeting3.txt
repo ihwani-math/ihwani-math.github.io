@@ -1,0 +1,144 @@
+\documentclass{article}
+\usepackage{amssymb, amsmath, amsfonts, amsthm, graphics, enumerate, mathrsfs, mathtools, tikz-cd}
+\usepackage{geometry, soul, hyperref}
+\usetikzlibrary{positioning,arrows,scopes}
+
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+% \setlength{\headheight}{26pt}
+% \setlength{\oddsidemargin}{-0.2in}    
+% \setlength{\evensidemargin}{-0.2in}
+% \setlength{\topmargin}{0in}
+% \setlength{\textwidth}{6.5in}
+ %\setlength{\headwidth}{6.5in} 
+ \setlength{\textheight}{8.5in}
+ 
+\theoremstyle{definition}
+\newtheorem*{thm}{Theorem}
+\newtheorem*{pthm}{Pre-Theorem}
+\newtheorem{prob}{Problem}
+\newtheorem{ex}{Exercise}
+\newtheorem*{dfn}{Definition}
+\newtheorem{eg}{Example}
+\newtheorem*{prop}{Proposition}
+\newtheorem*{rmk}{Remark}
+\newtheorem*{conj}{Conjecture}
+
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\FF}{\mathbb{F}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\PP}{\mathbb{P}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\cM}{\mathcal{M}}
+
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\Div}{Div}
+\DeclareMathOperator{\Supp}{Supp}
+\DeclareMathOperator{\indeg}{indeg}
+\DeclareMathOperator{\Pic}{Pic}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\im}{im}
+
+\newcommand{\dsp}{\displaystyle}
+\newcommand{\floor}[1]{\lfloor{{#1}}\rfloor}
+\newcommand{\ceil}[1]{\lceil{{#1}}\rceil}
+
+\title{log(m) meeting 3}
+%\date{\today}
+\lhead{ Log(M): Origami on lattices \\}
+\rhead{ Meeting 3 \\ 1 February 2019}
+\begin{document}
+%\maketitle 
+%\begin{center}
+%Notes, Fall 2017, assorted
+%\end{center}
+
+\section{Logistics}
+- Writing workshop coming up $\rightarrow$ 
+let me know if you need information from me
+
+\ul{Next meeting}: Saturday February 9, 12 - 1pm.
+
+Next next meeting: Friday February 15, 9:30 - 11am.
+
+\bigskip
+\ul{Expectations} for next meeting: 
+\begin{itemize}
+    \item Focus on Problem 4: what is the space of fold configuration for 3 creases through a hexagon?
+    Try to get a complete answer (I don't know what the answer is to this!)
+    
+    \item \textbf{[Writing]} Write up answer to Problem 1(b) as discussed; include some figures of the moduli space.
+    
+    \item \textbf{[Visualization]} Can you write code to visualize a space of fold configurations?
+    I.e. for Problem 1 or 2, display the moduli space on one side of the screen and as you move the cursor over this space, display the fold configuration on the other side of the screen.
+    
+    \item Please bring back the straw polygons next week!
+\end{itemize}
+
+\section{Moduli spaces}
+
+\begin{prob}
+(a) What is the moduli space of folding configurations for 
+two parallel creases, parallel to opposite sides, 
+which split the sheet into $3$ regions of equal area?
+\begin{center}
+    \includegraphics[scale=0.5]{parallel_equal_inv}
+\end{center}
+
+(b) What is the moduli space of folding configurations for two parallel creases, parallel to opposite sides, which are spaced arbitrarily?
+
+(c) What  distance is needed between the creases for this moduli space to look like Example 2 (the ``far away'' case)? 
+What happens as the distance separating the two creases approaches $0$?
+\end{prob}
+
+\ul{Discussion}: 
+In the general case with crease spacing $r_1, d, r_2$, the boundary 
+condition when the sheet intersects itself is described 
+by the equation
+\[ \tan \theta_2  = \frac{r_2 \sin \theta_1}{d - r_2 \cos \theta_1},\]
+with certain restrictions on $\theta_1$ and $\theta_2$.
+
+We looked at graphing this condition on \url{desmos.com} for some values of $d, r_1, r_2$.
+
+% \setcounter{prob}{2}
+% \begin{prob} \,[non-folding example of a moduli space]
+% What is the moduli space of ``space quadrilaterals'' with fixed side lengths?
+% E.g. if I cut four lengths of straw (with four different colors) and connect them in a loop with string, what are all possible configurations of this object 
+% (up to rotations and translations in $3$-space)?
+
+% (Thanks to Alex Wright for the straw polygons!)
+% \end{prob}
+
+\setcounter{prob}{3}
+\begin{prob}
+What is the space of folding configurations of a hexagon with creases along its three axes?
+\begin{center}
+    \includegraphics[scale=0.5]{hexagon_inv}
+\end{center}
+\end{prob}
+
+
+\section{Energy}
+\ul{Big question}: how do materials behave in the real world?
+
+\noindent i.e. in physics language: what configurations  {\em minimize energy} under given constraints?
+
+For example, an object acted on by gravity will rest at the lowest point and a spring will tend towards its equilibrium length.
+We are concerned not only with understanding a moduli space of all possible configurations, but also figuring out which configurations are more likely to show up due to physical considerations.
+
+In the case of a folding sheet, a sharper fold should (usually) correspond to higher energy. 
+Thus we can assign an {\em energy function} to a folding configuration $\Phi$
+by, for example,
+\[ E(\Phi) = \sum_i |\theta_i| \ell_i \]
+where $\theta_1, \theta_2, \ldots$ are the dihedral angles in the configuration $\Phi$ and $\ell_1, \ell_2, \ldots$ are the lengths of the corresponding creases
+($\theta_i = 0$ indicates an unfolded crease.)
+More generally, we could consider the energy function
+\[ E_p(\Phi) = \left(\sum_i |\theta_i|^p \ell_i \right)^{1/p}.\]
+Given a moduli space of fold configurations and an energy function, we would like to understand the relation between energy and other ``geometric'' measures of a configuration, e.g. how much space does it take up, how far away are the two farthest points, how far is it from being flat, etc.
+
+\end{document}

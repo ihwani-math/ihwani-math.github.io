@@ -1,0 +1,172 @@
+\documentclass{article}
+\usepackage{amssymb, amsmath, amsfonts, amsthm, graphics, enumerate, mathrsfs, mathtools, tikz-cd}
+\usepackage{geometry, soul, hyperref}
+\usetikzlibrary{positioning,arrows,scopes}
+
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+% \setlength{\headheight}{26pt}
+% \setlength{\oddsidemargin}{-0.2in}    
+% \setlength{\evensidemargin}{-0.2in}
+% \setlength{\topmargin}{0in}
+% \setlength{\textwidth}{6.5in}
+ %\setlength{\headwidth}{6.5in} 
+ \setlength{\textheight}{8.5in}
+ 
+\theoremstyle{definition}
+\newtheorem*{thm}{Theorem}
+\newtheorem*{pthm}{Pre-Theorem}
+\newtheorem{prob}{Problem}
+\newtheorem{ex}{Exercise}
+\newtheorem*{dfn}{Definition}
+\newtheorem{eg}{Example}
+\newtheorem*{prop}{Proposition}
+\newtheorem*{rmk}{Remark}
+\newtheorem*{conj}{Conjecture}
+
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\FF}{\mathbb{F}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\PP}{\mathbb{P}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\cM}{\mathcal{M}}
+
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\Div}{Div}
+\DeclareMathOperator{\Supp}{Supp}
+\DeclareMathOperator{\indeg}{indeg}
+\DeclareMathOperator{\Pic}{Pic}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\im}{im}
+
+\newcommand{\dsp}{\displaystyle}
+\newcommand{\floor}[1]{\lfloor{{#1}}\rfloor}
+\newcommand{\ceil}[1]{\lceil{{#1}}\rceil}
+
+\title{log(m) meeting 7}
+%\date{\today}
+\lhead{ Log(M): Origami on lattices \\}
+\rhead{ Meeting 7 \\ 1 March 2019}
+\begin{document}
+
+
+\section{Logistics}
+
+\ul{Next meeting}:  Friday March 15, 9:30 - 11am
+\medskip
+
+    
+\bigskip
+{Expectations} for next meeting: 
+\begin{itemize}
+
+    
+    
+    \item Problem 9: mountain / valley labellings
+    for hexagon crease pattern
+    
+    \item Problem 10: using the formula for spherical triangles relating external angles to (spherical) area,
+    prove the generalization to spherical $n$-gons.
+    
+    
+    \item \textbf{[Writing]} 
+    Continue writing up relevant discussion from this week in draft of final report 
+    
+
+\end{itemize}
+
+\section{Hexagon configuration space}
+
+% \subsection{Changing coordinates}
+% \setcounter{prob}{6}
+% \begin{prob}
+% Given three nonzero vectors $v_0,\,v_1,\,v_2 \in \RR^3$, 
+% what is a formula to express the dihedral angle between 
+% the planes $p_{01} = \RR v_0+\RR v_1$ and $p_{12} = \RR v_1 + \RR v_2$?
+
+% \noindent (Possible hint: \url{https://en.wikipedia.org/wiki/Dihedral_angle#Mathematical_background})
+% \end{prob}
+% Our goal will be to use this expression for the angles to express the {\em energy} 
+% \[ E(\Phi) = \left( \sum_i |\theta_i - \pi|^2 \right)^{1/2}\]
+% of a given fold configuration in terms of the crease vectors,
+% and to study configurations of constant energy.
+
+\subsection{Mountain / valley diagrams}
+To understand a topological space it often helps to cut it up into smaller, more manageable pieces.
+
+For a fold configuration which is ``near flat,'' 
+we say a crease is a {\em mountain fold} if it is higher than a secant line between its two adjacent flat regions, and a {\em valley fold} if it is lower.
+(We take the nearby flat configuration as reference for what ``higher''
+and ``lower'' mean.)
+
+Suppose we label each crease in a configuration with ``mountain'' or ``valley'' or neither.
+Visually we can indicate these respectively by a solid line, a dotted line, or no line.
+\begin{eg}
+For two perpendicular creases (so there are $4$ total crease vectors),
+the following shows possible mountain/valley labellings:
+\begin{center}
+    \includegraphics[scale=0.3]{mv_diagram_small}
+\end{center}
+The following mountain/valley labelling is not possible:
+%\begin{center}
+\qquad    \includegraphics[scale=0.1]{mv_impossible}
+%\end{center}
+\end{eg}
+
+\setcounter{prob}{7}
+\begin{prob}
+In the following diagrams with $5$ creases coming from a central vertex,
+which mountain/valley labellings are possible? 
+How do these fit together in configuration space near the unfolded state?
+\begin{enumerate}[(a)]
+    \item creases with equal spacings \qquad 
+    %\begin{center}
+        \includegraphics[scale=0.15]{5fold_equal}
+    %\end{center}
+
+    \item creases perpendicular plus one at $45^\circ$ angle \qquad
+    %\begin{center}
+        \includegraphics[scale=0.15]{5fold_square}
+    %\end{center}
+\end{enumerate}
+\end{prob}
+\ul{Discussion}:
+\begin{enumerate}[(a)]
+    \item In this crease configuration, the unit null cone near the unfolded state 
+    is two disjoint circles.
+    If we split up this space according to mountain/valley labellings,
+    there are $10$ one-dimensional regions and $10$ zero-dimensional regions. 
+    \begin{center}
+    [INSERT DIAGRAM]
+    \end{center}
+    
+    \item If we split up this space according to mountain/valley labellings,
+    there are $4$ one-dimensional regions and $4$ zero-dimensional regions.
+    \begin{center}
+    [INSERT DIAGRAM]
+    \end{center}
+\end{enumerate}
+
+\begin{prob}
+In a diagram with $6$ creases coming together at a vertex at equal angles,
+the unit null cone near the flat space is two disjoint spheres.
+We consider cutting up  these spheres into regions according to mountain/valley labellings.
+\begin{enumerate}[(a)]
+    \item How many zero-dimensional, one-dimensional, and two-dimensional regions are there on each sphere?
+    
+    \item What shapes are the two-dimensional regions? 
+    How do they fit together? (i.e. draw out a diagram)
+\end{enumerate}
+
+
+\end{prob}
+
+
+
+
+\end{document}

@@ -1,0 +1,181 @@
+\documentclass{article}
+\usepackage{amssymb, amsmath, amsfonts, amsthm, graphics, enumerate, mathrsfs, mathtools, tikz-cd}
+\usepackage{geometry, soul, hyperref}
+\usetikzlibrary{positioning,arrows,scopes}
+
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+% \setlength{\headheight}{26pt}
+% \setlength{\oddsidemargin}{-0.2in}    
+% \setlength{\evensidemargin}{-0.2in}
+% \setlength{\topmargin}{0in}
+% \setlength{\textwidth}{6.5in}
+ %\setlength{\headwidth}{6.5in} 
+ \setlength{\textheight}{8.5in}
+ 
+\theoremstyle{definition}
+\newtheorem*{thm}{Theorem}
+\newtheorem*{pthm}{Pre-Theorem}
+\newtheorem{prob}{Problem}
+\newtheorem{ex}{Exercise}
+\newtheorem*{dfn}{Definition}
+\newtheorem{eg}{Example}
+\newtheorem*{prop}{Proposition}
+\newtheorem*{rmk}{Remark}
+\newtheorem*{conj}{Conjecture}
+
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\FF}{\mathbb{F}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\PP}{\mathbb{P}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\cM}{\mathcal{M}}
+
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\Div}{Div}
+\DeclareMathOperator{\Supp}{Supp}
+\DeclareMathOperator{\indeg}{indeg}
+\DeclareMathOperator{\Pic}{Pic}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\im}{im}
+
+\newcommand{\dsp}{\displaystyle}
+\newcommand{\floor}[1]{\lfloor{{#1}}\rfloor}
+\newcommand{\ceil}[1]{\lceil{{#1}}\rceil}
+
+\title{log(m) meeting 2}
+%\date{\today}
+\lhead{ Log(M): Origami on lattices \\}
+\rhead{ Meeting 2 \\ 25 January 2019}
+\begin{document}
+%\maketitle 
+%\begin{center}
+%Notes, Fall 2017, assorted
+%\end{center}
+
+\section{Logistics}
+We agreed to use overleaf.com for working on the final report. Do you have an overleaf account set up?
+
+Drawing diagrams in Latex: standard is the 
+\texttt{tikz} package
+
+\url{https://en.wikibooks.org/wiki/LaTeX/PGF/TikZ}
+
+\url{http://www.texample.net/tikz/examples/ac-drive-voltage/}
+
+\ul{Next meeting}: Friday February 1, 10 - 11am.
+
+\section{Moduli spaces}
+
+
+
+
+
+
+\begin{prob}
+(a) What is the moduli space of folding configurations for 
+two parallel creases, parallel to opposite sides, 
+which split the sheet into $3$ regions of equal area?
+\begin{center}
+    \includegraphics[scale=0.5]{parallel_equal_inv}
+\end{center}
+%\end{prob}
+%\begin{prob}
+
+(b) What is the moduli space of folding configurations for two parallel creases, parallel to opposite sides, which are spaced arbitrarily?
+
+(c) What  distance is needed between the creases for this moduli space to look like Example 2 (the ``far away'' case)? 
+What happens as the distance separating the two creases approaches $0$?
+\end{prob}
+
+\ul{Discussion}: In the massless case, the space of folding configurations is a torus, for arbitrary placement of the parallel creases.
+
+For Problem 1(a),
+we described the answer to 
+the massive case explicitly.
+\begin{center}
+    \includegraphics[scale=0.12]{parallel_foldspace_inv}
+\end{center}
+The moduli space is a square with regions removed from two opposite corners. The region is bounded by straight line segments.
+In addition, two of the extreme corner points  become separated into two points each.
+\begin{center}
+    \includegraphics[scale=0.2]{selfcrossing_bound_inv}
+\end{center}
+
+For Problem 1(c), if the parallel creases separate the sheet into regions of width $a$, $b$, and $c$, then the ``far away'' case occurs when $b \geq a + c$.
+
+\begin{prob}
+(a) What is the moduli space of folding configurations for two perpendicular creases?
+\begin{center}
+    \includegraphics[scale=0.5]{perpendicular_inv}
+\end{center}
+%\end{prob}
+%\begin{prob}
+
+(b) What is the moduli space of folding configurations for two creases which cross in the center at an arbitrary angle? 
+(Assume the creases intersect in the interior of the sheet)?
+
+(c) 
+Does your answer to (a) change if the creases are not aligned with the sides of the sheet?
+Does your answer to (a) or (b) change if the creases don't intersect at the center?
+
+\end{prob}
+
+\ul{Discussion}:
+This moduli space has 1 degree of freedom.
+In the massive case:
+\begin{center}
+    \includegraphics[scale=0.15]{perpendicular_foldspace_inv}
+\end{center}
+In the massless case:
+\begin{center}
+    \includegraphics[scale=0.15]{perpendicular_foldspace2_inv}
+\end{center}
+
+\begin{prob} \,[non-folding example of a moduli space]
+What is the moduli space of ``space quadrilaterals'' with fixed side lengths?
+E.g. if I cut four lengths of straw (with four different colors) and connect them in a loop with string, what are all possible configurations of this object 
+(up to rotations and translations in $3$-space)?
+
+(Thanks to Alex Wright for the straw polygons!)
+\end{prob}
+
+\begin{prob}
+What is the space of folding configurations of a hexagon with creases along its three axes?
+\begin{center}
+    \includegraphics[scale=0.5]{hexagon_inv}
+\end{center}
+\end{prob}
+
+\ul{Expectations} for next meeting: 
+\begin{itemize}
+    \item For Problem 3, we agreed that the space quadrilateral has $2$ degrees of freedom,
+    i.e. its moduli space is $2$-dimensional.
+    What is this space? 
+    (What is a ``common name'' for this shape?)
+    
+    \item Answer Problem 1(b-c) completely, and Problem 2(b-c) completely.
+    On Problem 1, the {\em law of sines} should be helpful.
+    
+    \item Start thinking about Problem 4, the hexagon.
+    (I think this is more complicated)
+    Figure out at least the number of degrees of freedom of this folding pattern.
+    
+    \item \textbf{[Writing]} Write up answers to Problems 1(a) and 2(a) nicely in latex, to use as Examples in your final report.
+    
+    \item \textbf{[Visualization]} Can you write code to visualize a space of fold configurations?
+    I.e. for Problem 1 or 2, display the moduli space on one side of the screen and as you move the cursor over this space, display the fold configuration on the other side of the screen.
+    
+    \item In the ``Discrete folding'' paper, try to understand Figure 9 on p. 10.
+    How are the diagrams in the top row special?
+    Where do the numbers next to each diagram come from?
+    Is the model considered here ``massless'' or ``massive''?
+    
+\end{itemize}
+
+\end{document}

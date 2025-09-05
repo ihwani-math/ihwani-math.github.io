@@ -1,0 +1,125 @@
+\documentclass{article}
+\usepackage{amssymb, amsmath, amsfonts, amsthm, graphics, enumerate, mathrsfs, mathtools, tikz-cd}
+\usepackage{geometry, soul, hyperref}
+\usetikzlibrary{positioning,arrows,scopes}
+
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+% \setlength{\headheight}{26pt}
+% \setlength{\oddsidemargin}{-0.2in}    
+% \setlength{\evensidemargin}{-0.2in}
+% \setlength{\topmargin}{0in}
+% \setlength{\textwidth}{6.5in}
+ %\setlength{\headwidth}{6.5in} 
+ \setlength{\textheight}{8.5in}
+ 
+\theoremstyle{definition}
+\newtheorem*{thm}{Theorem}
+\newtheorem*{pthm}{Pre-Theorem}
+\newtheorem{prob}{Problem}
+\newtheorem{ex}{Exercise}
+\newtheorem*{dfn}{Definition}
+\newtheorem{eg}{Example}
+\newtheorem*{prop}{Proposition}
+\newtheorem*{rmk}{Remark}
+\newtheorem*{conj}{Conjecture}
+
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\FF}{\mathbb{F}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\PP}{\mathbb{P}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\cM}{\mathcal{M}}
+
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\Div}{Div}
+\DeclareMathOperator{\Supp}{Supp}
+\DeclareMathOperator{\indeg}{indeg}
+\DeclareMathOperator{\Pic}{Pic}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\im}{im}
+
+\newcommand{\dsp}{\displaystyle}
+\newcommand{\floor}[1]{\lfloor{{#1}}\rfloor}
+\newcommand{\ceil}[1]{\lceil{{#1}}\rceil}
+
+\title{log(m) meeting 8}
+%\date{\today}
+\lhead{ Log(M): Origami on lattices \\}
+\rhead{ Meeting 8 \\ 15 March 2019}
+\begin{document}
+
+
+\section{Logistics}
+
+\ul{Next meeting}:  Friday March 22, 9:30 - 11am
+\medskip
+
+    
+\bigskip
+{Expectations} for next meeting: 
+\begin{itemize}
+
+    
+    
+    \item mountain / valley labellings
+    for hexagon crease pattern
+    
+    \textbf{Problem 9}: 
+    In a diagram with $6$ creases coming together at a vertex at equal angles,
+the unit null cone near the flat space is two disjoint spheres.
+We consider cutting up  these spheres into regions according to mountain/valley labellings.
+\begin{enumerate}[(a)]
+    \item How many zero-dimensional, one-dimensional, and two-dimensional regions are there on each sphere?
+    
+    \item What shapes are the two-dimensional regions? 
+    How do they fit together? (i.e. draw out a diagram)
+\end{enumerate}
+    
+    \item  area formula for spherical $n$-gons
+    
+    \textbf{Problem 10}: For a spherical $n$-gon with internal angles $\alpha_1,\ldots,\alpha_n$, show that
+    \[ \text{Area} = \sum_{i=1}^n \alpha_i - (n-2)\pi \]
+    where area is measured on the surface of a unit sphere.
+   Equivalently, for an $n$-gon
+    \[ \text{Area} = 2\pi - \sum_{i=1}^n (\pi - \alpha_i) .\]
+     You may assume the triangle area formula $\text{Area} = (\alpha_1 + \alpha_2 + \alpha_3) - \pi$.
+    
+    
+    \item angle constraints on hexagon crease patter
+    
+    \textbf{Problem 11}:
+    Suppose we want to fix three consecutive creases on a hexagon at fold angles
+    $\theta_1$, $\theta_2$, and $\theta_3$. 
+    (By ``fold angle'' we mean flat $\Leftrightarrow \, \theta_i=0$.)
+    \begin{enumerate}[(a)]
+    \item When is this possible, and when is this impossible?
+    \item When this is possible, what are the values of angles $\theta_4,\, \theta_5,\, \theta_6$?
+    Note: there may be more than one answer. How many answers are possible?
+    \end{enumerate}
+    For example, 
+    \begin{itemize}
+    \item if $\theta_1 = \theta_2 = \theta_3=0$,
+    then this is possible and we must have $\theta_4 = \theta_5 = \theta_6=0$.
+    
+    \item if $\theta_1 = \theta_2 = 0$ and $\theta_3 = \pi$,
+    then this is possible and we must have
+    $\theta_4 = \theta_5 = 0$ and $\theta_6 = \pi$.
+    \end{itemize}
+    
+    \item \textbf{[Writing]} 
+    Write up notes for this meeting, and
+    continue writing up relevant discussion from this week in draft of final report 
+    
+
+\end{itemize}
+
+
+
+
+\end{document}
